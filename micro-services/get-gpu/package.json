@@ -1,0 +1,25 @@
+{
+  "name": "needpc-gpu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "http": "0.0.0",
+    "manakin": "^0.5.1",
+    "md5": "^2.2.1",
+    "morgan": "^1.9.0",
+    "path": "^0.12.7",
+    "pg": "^6.4.2",
+    "pg-hstore": "^2.3.2",
+    "redis": "^2.8.0",
+    "sequelize": "^4.38.0",
+    "validator": "^10.4.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "npm test"
+  },
+  "author": "perriea <perrie_a@etna-alternance.net>",
+  "license": "MIT"
+}
