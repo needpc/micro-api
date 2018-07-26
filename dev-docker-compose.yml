@@ -27,10 +27,10 @@ services:
     ports:
       - "6379:6379"
 
-  api-computer-id:
-    image: registry:5000/needpc-api-computer-id:0.0.1
-    build: ./micro-services/get-computer-id
-    hostname: api-computer-id
+  api-computers-id:
+    image: registry:5000/needpc-api-computers-id:0.0.1
+    build: ./micro-services/get-computers-id
+    hostname: api-computers-id
     depends_on:
       - db
       - redis
@@ -146,8 +146,6 @@ services:
     image: registry:5000/needpc-frontend:0.0.1
     build: ./frontend
     hostname: frontend
-    depends_on:
-      - gateway
     networks:
       - app-private
     ports:
@@ -159,13 +157,14 @@ services:
     hostname: gateway
     depends_on:
       - api-computers
-      - api-computer-id
+      - api-computers-id
       - api-activity
       - api-ask
       - api-brand
       - api-cpu
       - api-gpu
       - api-notfound
+      - frontend
     networks:
       - public
       - app-private
