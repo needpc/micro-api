@@ -1,0 +1,4 @@
+package: github.com/perriea/micro-api/micro-services/get-notfound
+import:
+- package: github.com/gorilla/mux
+  version: ^1.6.2

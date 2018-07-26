@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "node",
+    "password": "nodejs",
+    "database": "dev-node",
+    "host": "db",
+    "dialect": "postgres",
+    "ssl": false
+  }
+}

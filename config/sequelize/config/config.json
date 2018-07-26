@@ -1,0 +1,27 @@
+{
+    "development": {
+      "username": "node",
+      "password": "nodejs",
+      "database": "dev-node",
+      "host": "127.0.0.1",
+      "dialect": "postgres",
+      "ssl": false
+    },
+    "staging": {
+      "username": "",
+      "password": "",
+      "database": "",
+      "host": "db",
+      "dialect": "postgres",
+      "ssl": false
+    },
+    "production": {
+      "username": "",
+      "password": "",
+      "database": "",
+      "host": "db",
+      "dialect": "postgres",
+      "ssl": false
+    }
+  }
+  
