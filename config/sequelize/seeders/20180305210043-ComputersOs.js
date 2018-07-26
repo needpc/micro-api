@@ -9,6 +9,12 @@ module.exports = {
       { 
         name: 'Aucun' 
       },
+      { 
+        name: 'Windows' 
+      },
+      {
+        name: 'MacOS'
+      }
     ], {});
   },
 

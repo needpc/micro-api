@@ -17,12 +17,12 @@ module.exports = {
         allowNull: false
       },
       resp: {
-        type: Sequelize.STRING(32),
+        type: Sequelize.STRING(64),
         allowNull: false
       },
       indice: {
-        type: Sequelize.STRING(32),
-        allowNull: false
+        type: Sequelize.STRING(512),
+        allowNull: true
       },
     });
   },
