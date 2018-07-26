@@ -28,8 +28,8 @@ services:
       - "6379:6379"
 
   api-activity:
-    image: registry:5000/needpc-api-activity:0.0.1
-    build: ./micro-services/get-activity/
+    image: registry:5000/needpc-api-activities:0.0.1
+    build: ./micro-services/get-activities
     hostname: api-activity
     depends_on:
       - db
@@ -40,7 +40,7 @@ services:
     networks:
       - app-private
     ports:
-      - "20005:80"
+      - "20005:3000"
 
   api-ask:
     image: registry:5000/needpc-api-ask:0.0.1
@@ -53,11 +53,11 @@ services:
     networks:
       - app-private
     ports:
-      - "20004:80"
+      - "20004:3000"
 
   api-brand:
-    image: registry:5000/needpc-api-brand:0.0.1
-    build: ./micro-services/get-brand
+    image: registry:5000/needpc-api-brands:0.0.1
+    build: ./micro-services/get-brands
     hostname: api-brand
     depends_on:
       - db
@@ -68,11 +68,11 @@ services:
     networks:
       - app-private
     ports:
-      - "20003:80"
+      - "20003:3000"
 
   api-cpu:
-    image: registry:5000/needpc-api-cpu:0.0.1
-    build: ./micro-services/get-cpu
+    image: registry:5000/needpc-api-cpus:0.0.1
+    build: ./micro-services/get-cpus
     hostname: api-cpu
     depends_on:
       - db
@@ -83,11 +83,11 @@ services:
     networks:
       - app-private
     ports:
-      - "20002:80"
+      - "20002:3000"
 
   api-gpu:
-    image: registry:5000/needpc-api-gpu:0.0.1
-    build: ./micro-services/get-gpu
+    image: registry:5000/needpc-api-gpus:0.0.1
+    build: ./micro-services/get-gpus
     hostname: api-gpu
     depends_on:
       - db
@@ -98,7 +98,7 @@ services:
     networks:
       - app-private
     ports:
-      - "20001:80"
+      - "20001:3000"
 
   api-notfound:
     image: registry:5000/needpc-api-notfound:0.0.1
@@ -110,7 +110,7 @@ services:
     networks:
       - app-private
     ports:
-      - "20000:80"
+      - "20000:3000"
 
   gateway:
     image: nginx:1.15.1-alpine
