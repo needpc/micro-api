@@ -1,0 +1,233 @@
+#%RAML 1.0
+---
+title: API NeedPC
+version: v1
+baseUri: https://api.needpc.com/{version}
+
+/search:
+  /computers:
+    get:
+      queryParameters:
+        model:
+          displayName: Model
+          type: integer
+          description: Model a rechercher (PostgreSQL Like)
+          example: GTe5000
+          required: false
+        os:
+          displayName: OS id
+          type: integer
+          description: 
+          example: 3
+          required: false
+        brand:
+          displayName: Brand id
+          type: integer
+          description: 
+          example: 5
+          required: false
+        activity:
+          displayName: Activity id
+          type: integer
+          description: 
+          example: 35
+          required: false
+        cpu:
+          displayName: CPU id
+          type: integer
+          description: 
+          example: 80
+          required: false
+        cpu_score:
+          displayName: CPU Scoring id
+          type: integer
+          description: 
+          example: 5000
+          required: false
+        gpu:
+          displayName: GPU id
+          type: integer
+          description: 
+          example: 6
+          required: false
+        gpu_score:
+          displayName: GPU scoring id
+          type: integer
+          description: 
+          example: 10000
+          required: false
+        chipset:
+          displayName: Chipset id
+          type: integer
+          description: 
+          example: 10000
+          required: false
+      responses:
+        200:
+          description: Call
+          body:
+            application/json:
+              schema: search_computers
+              example: !include ./examples/search_computers.json
+        500:
+          description: Error 500
+          body:
+            application/json:
+              schema: 500
+              example: !include ./errors/500.json
+    /{id}:
+      get:
+        responses:
+          200:
+            description: Produit
+            body:
+              application/json:
+                schema: Produit
+                example: !include ./examples/computer_id.json
+          500:
+            description: Error 500
+            body:
+              application/json:
+                schema: 500
+                example: !include ./errors/500.json
+  /gpu:
+    get:
+      queryParameters:
+        name:
+          displayName: Name
+          type: string
+          description: Carte graphique a rechercher (PostgreSQL Like)
+          example: Nvidia Geforce
+          required: false
+      responses:
+        200:
+          description: Call
+          body:
+            application/json:
+              schema: search_graphics
+              example: !include ./examples/search_graphics.json
+        500:
+          description: Error 500
+          body:
+            application/json:
+              schema: 500
+              example: !include ./errors/500.json
+  /os:
+    get:
+      responses:
+        200:
+          description: Call
+          body:
+            application/json:
+              schema: search_graphics
+              example: !include ./examples/search_os.json
+        500:
+          description: Error 500
+          body:
+            application/json:
+              schema: 500
+              example: !include ./errors/500.json
+  /brand:
+    get:
+      responses:
+        200:
+          description: Call
+          body:
+            application/json:
+              schema: search_graphics
+              example: !include ./examples/search_brands.json
+        500:
+          description: Error 500
+          body:
+            application/json:
+              schema: 500
+              example: !include ./errors/500.json
+  /chipset:
+    get:
+      responses:
+        200:
+          description: Call
+          body:
+            application/json:
+              schema: search_graphics
+              example: !include ./examples/search_chipsets.json
+        500:
+          description: Error 500
+          body:
+            application/json:
+              schema: 500
+              example: !include ./errors/500.json
+  /cpu:
+    get:
+      queryParameters:
+        name:
+          displayName: Name
+          type: string
+          description: CPU a rechercher (PostgreSQL Like)
+          example: Intel Xeon
+          required: false
+      responses:
+        200:
+          description: Call
+          body:
+            application/json:
+              schema: search_graphics
+              example: !include ./examples/search_cpus.json
+        500:
+          description: Error 500
+          body:
+            application/json:
+              schema: 500
+              example: !include ./errors/500.json
+  /activity:
+    get:
+      queryParameters:
+        name:
+          displayName: Name
+          type: string
+          description: Activite a rechercher (PostgreSQL Like)
+          example: Gamer
+          required: false
+      responses:
+        200:
+          description: Call
+          body:
+            application/json:
+              schema: search_graphics
+              example: !include ./examples/search_activities.json
+        500:
+          description: Error 500
+          body:
+            application/json:
+              schema: 500
+              example: !include ./errors/500.json
+
+/ask:
+  get:
+    queryParameters:
+      activity:
+        displayName: Activity ID
+        type: integer
+        description: Selection de l'ID des question
+        example: 1
+        required: false
+      rank:
+        displayName: Rank ID
+        type: integer
+        description: Selection de l'importance de la question
+        example: 2
+        required: false
+    responses:
+      200:
+        description: Quest
+        body:
+          application/json:
+            schema: Ask
+            example: !include ./examples/quest_ask.json
+      500:
+        description: Error 500
+          body:
+          application/json:
+            schema: 500
+            example: !include ./errors/500.json
+   

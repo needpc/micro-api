@@ -1,0 +1,92 @@
+{
+    "error": false,
+    "data": [
+        {
+            "id": 28,
+            "model": "LDLC Aurore Ci3-4-H20-H10",
+            "picture": "https://media.ldlc.com/ld/products/00/04/45/51/LD0004455157_2.jpg",
+            "updated_at": "2018-05-18T13:37:55.057Z",
+            "created_at": "2018-05-18T13:37:55.057Z",
+            "os": {
+                "name": "Windows 10 Famille 64 bits",
+                "description": null
+            },
+            "cpu": {
+                "name": "Intel Core i3-6100H (Dual-Core 2.7 GHz - Cache 3 Mo)",
+                "score": null,
+                "description": null
+            },
+            "gpu": {
+                "name": "Intel HD Graphics 530",
+                "score": 500,
+                "description": null
+            },
+            "chipset": {
+                "name": "Mobile Intel HM170 Express",
+                "description": null
+            },
+            "activity": {
+                "name": "N/A",
+                "description": null
+            }
+        },
+        {
+            "id": 27,
+            "model": "LDLC Aurore Ci3-4-H20",
+            "picture": "https://media.ldlc.com/ld/products/00/04/45/51/LD0004455112_2.jpg",
+            "updated_at": "2018-05-18T13:37:54.957Z",
+            "created_at": "2018-05-18T13:37:54.957Z",
+            "os": {
+                "name": "Aucun",
+                "description": null
+            },
+            "cpu": {
+                "name": "Intel Core i3-6100H (Dual-Core 2.7 GHz - Cache 3 Mo)",
+                "score": null,
+                "description": null
+            },
+            "gpu": {
+                "name": "Intel HD Graphics 530",
+                "score": 500,
+                "description": null
+            },
+            "chipset": {
+                "name": "Mobile Intel HM170 Express",
+                "description": null
+            },
+            "activity": {
+                "name": "N/A",
+                "description": null
+            }
+        },
+        {
+            "id": 3,
+            "model": "LDLC Aurore CI3-8-S1H10-P10",
+            "picture": "https://media.ldlc.com/ld/products/00/04/45/53/LD0004455327_2.jpg",
+            "updated_at": "2018-05-18T13:37:52.795Z",
+            "created_at": "2018-05-18T13:37:52.795Z",
+            "os": {
+                "name": "Windows 10 Professionnel 64 bits",
+                "description": null
+            },
+            "cpu": {
+                "name": "Intel Core i3-6100H (Dual-Core 2.7 GHz - Cache 3 Mo)",
+                "score": null,
+                "description": null
+            },
+            "gpu": {
+                "name": "Intel HD Graphics 530",
+                "score": 500,
+                "description": null
+            },
+            "chipset": {
+                "name": "Mobile Intel HM170 Express",
+                "description": null
+            },
+            "activity": {
+                "name": "N/A",
+                "description": null
+            }
+        }
+    ]
+}
