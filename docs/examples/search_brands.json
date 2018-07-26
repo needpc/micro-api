@@ -1,0 +1,17 @@
+{
+    "error":false,
+    "data":[
+        {
+            "id":1,
+            "name":"Intel"
+        },
+        {
+            "id":2,
+            "name":"Asus"
+        },
+        {
+            "id":3,
+            "name":"Acer"
+        }
+    ]
+}

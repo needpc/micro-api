@@ -1,0 +1,133 @@
+{
+    "error": false,
+    "data": [
+        {
+            "id": 1,
+            "rank": 1,
+            "quest": "Quelle utilisation faites-vous de votre ordinateur ?",
+            "domain": "activity",
+            "activity": {
+                "name": "Bureautique",
+                "description": null
+            },
+            "responses": [
+                {
+                    "resp": "Jouer",
+                    "indice": "2"
+                },
+                {
+                    "resp": "Bureautique",
+                    "indice": "3"
+                },
+                {
+                    "resp": "Multimédia",
+                    "indice": "4"
+                },
+                {
+                    "resp": "Jouer",
+                    "indice": "2"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "rank": 2,
+            "quest": "A quel type de jeu jouez-vous ?",
+            "domain": "cpuscore",
+            "activity": {
+                "name": "Bureautique",
+                "description": null
+            },
+            "responses": [
+                {
+                    "resp": "Assassin's Creed",
+                    "indice": "13"
+                },
+                {
+                    "resp": "Minecraft",
+                    "indice": "15"
+                },
+                {
+                    "resp": "Vermintide 2",
+                    "indice": "17"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "rank": 3,
+            "quest": "Quel taille d'écran désirez-vous ?",
+            "domain": "screensize",
+            "activity": {
+                "name": "Bureautique",
+                "description": null
+            },
+            "responses": [
+                {
+                    "resp": "13 pouces",
+                    "indice": "13"
+                },
+                {
+                    "resp": "15 pouces",
+                    "indice": "15"
+                },
+                {
+                    "resp": "17 pouces",
+                    "indice": "17"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "rank": 4,
+            "quest": "Quelle est la qualité graphique minimum que vous désirez ?",
+            "domain": "gpuscore",
+            "activity": {
+                "name": "Bureautique",
+                "description": null
+            },
+            "responses": [
+                {
+                    "resp": "Minimale",
+                    "indice": "4000"
+                },
+                {
+                    "resp": "Moyenne",
+                    "indice": "8000"
+                },
+                {
+                    "resp": "Haute",
+                    "indice": "12000"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "rank": 5,
+            "quest": "Quel est votre budget ?",
+            "domain": "pricing",
+            "activity": {
+                "name": "Bureautique",
+                "description": null
+            },
+            "responses": [
+                {
+                    "resp": "Moins de 300€",
+                    "indice": "150"
+                },
+                {
+                    "resp": "Entre 300€ et 600€",
+                    "indice": "450"
+                },
+                {
+                    "resp": "600€ et 900€",
+                    "indice": "750"
+                },
+                {
+                    "resp": "Plus de 1000€",
+                    "indice": "1050"
+                }
+            ]
+        }
+    ]
+}
