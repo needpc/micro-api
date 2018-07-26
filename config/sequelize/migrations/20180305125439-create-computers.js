@@ -80,19 +80,19 @@ module.exports = {
         allowNull: true,
       },
       weight: {
-        type: Sequelize.STRING(16),
+        type: Sequelize.FLOAT,
         allowNull: true,
       },
       length: {
-        type: Sequelize.STRING(16),
+        type: Sequelize.FLOAT,
         allowNull: true,
       },
       width: {
-        type: Sequelize.STRING(16),
+        type: Sequelize.FLOAT,
         allowNull: true,
       },
       height: {
-        type: Sequelize.STRING(16),
+        type: Sequelize.FLOAT,
         allowNull: true,
       },
       memory_type: {
@@ -100,11 +100,11 @@ module.exports = {
         allowNull: true,
       },
       memory_size: {
-        type: Sequelize.STRING(128),
+        type: Sequelize.FLOAT,
         allowNull: true,
       },
       memory_max_size: {
-        type: Sequelize.STRING(128),
+        type: Sequelize.FLOAT,
         allowNull: true,
       },
       keyboard_type: {
