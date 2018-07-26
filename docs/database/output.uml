@@ -1,0 +1,157 @@
+@startuml
+
+entity "SequelizeMeta" {
+  + name [PK]
+  --
+}
+
+entity "computers" {
+  + id [PK]
+  --
+  os_id
+  brand_id
+  cpu_id
+  gpu_id
+  activity_id
+  chipset_id
+  picture
+  designation
+  model
+  connector_available
+  weight
+  length
+  width
+  height
+  memory_type
+  memory_size
+  memory_max_size
+  keyboard_type
+  keyboard_numpad
+  keyboard_light
+  screen_type
+  screen_resolution
+  screen_refresh_rate
+  screen_size
+  screen_format
+  network
+  webcam
+  active
+  created_at
+  updated_at
+}
+
+entity "computers_activities" {
+  + id [PK]
+  --
+  name
+  description
+}
+
+entity "computers_brands" {
+  + id [PK]
+  --
+  name
+  description
+}
+
+entity "computers_chipsets" {
+  + id [PK]
+  --
+  name
+  description
+}
+
+entity "computers_cpus" {
+  + id [PK]
+  --
+  name
+  score
+  description
+}
+
+entity "computers_disks" {
+  + id [PK]
+  --
+  computer_id
+  type
+  size
+  interface
+}
+
+entity "computers_gpus" {
+  + id [PK]
+  --
+  name
+  score
+  memory_type
+  max_memory
+  description
+}
+
+entity "computers_os" {
+  + id [PK]
+  --
+  name
+  description
+}
+
+entity "computers_prices" {
+  + id [PK]
+  --
+  computer_id
+  trader_id
+  last_price
+  pricing
+  url
+  created_at
+  updated_at
+}
+
+entity "computers_quests" {
+  + id [PK]
+  --
+  activity_id
+  rank
+  quest
+  created_at
+  updated_at
+  active
+}
+
+entity "computers_quests_resps" {
+  + id [PK]
+  --
+  quest_id
+  resp
+  indice
+}
+
+entity "computers_traders" {
+  + id [PK]
+  --
+  name
+  description
+}
+
+ computers }-- computers_activities
+
+ computers }-- computers_brands
+
+ computers }-- computers_chipsets
+
+ computers }-- computers_cpus
+
+ computers }-- computers_gpus
+
+ computers }-- computers_os
+
+ computers_disks }-- computers
+
+ computers_prices }-- computers
+
+ computers_prices }-- computers_traders
+
+ computers_quests }-- computers_activities
+
+ computers_quests_resps }-- computers_quests
+@enduml
