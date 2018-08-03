@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.7'
 
 services:
   db:
@@ -28,7 +28,7 @@ services:
       - "6379:6379"
 
   api-computers-id:
-    image: registry:5000/needpc-api-computers-id:0.0.1
+    image: quay.io/needpc/needpc-api-computers-id:latest
     build: ./micro-services/get-computers-id
     hostname: api-computers-id
     depends_on:
@@ -43,7 +43,7 @@ services:
       - "20007:3000"
 
   api-computers:
-    image: registry:5000/needpc-api-computers:0.0.1
+    image: quay.io/needpc/needpc-api-computers:latest
     build: ./micro-services/get-computers
     hostname: api-computers
     depends_on:
@@ -58,7 +58,7 @@ services:
       - "20006:3000"
 
   api-activity:
-    image: registry:5000/needpc-api-activities:0.0.1
+    image: quay.io/needpc/needpc-api-activities:latest
     build: ./micro-services/get-activities
     hostname: api-activity
     depends_on:
@@ -73,7 +73,7 @@ services:
       - "20005:3000"
 
   api-ask:
-    image: registry:5000/needpc-api-ask:0.0.1
+    image: quay.io/needpc/needpc-api-ask:latest
     build: ./micro-services/get-ask
     hostname: api-ask
     depends_on:
@@ -86,7 +86,7 @@ services:
       - "20004:3000"
 
   api-brand:
-    image: registry:5000/needpc-api-brands:0.0.1
+    image: quay.io/needpc/needpc-api-brands:latest
     build: ./micro-services/get-brands
     hostname: api-brand
     depends_on:
@@ -101,7 +101,7 @@ services:
       - "20003:3000"
 
   api-cpu:
-    image: registry:5000/needpc-api-cpus:0.0.1
+    image: quay.io/needpc/needpc-api-cpus:latest
     build: ./micro-services/get-cpus
     hostname: api-cpu
     depends_on:
@@ -116,7 +116,7 @@ services:
       - "20002:3000"
 
   api-gpu:
-    image: registry:5000/needpc-api-gpus:0.0.1
+    image: quay.io/needpc/needpc-api-gpus:latest
     build: ./micro-services/get-gpus
     hostname: api-gpu
     depends_on:
@@ -131,7 +131,7 @@ services:
       - "20001:3000"
 
   api-notfound:
-    image: registry:5000/needpc-api-notfound:0.0.1
+    image: quay.io/needpc/needpc-api-notfound:latest
     build: ./micro-services/get-notfound
     hostname: api-notfound
     depends_on:
@@ -143,7 +143,7 @@ services:
       - "20000:3000"
 
   frontend:
-    image: registry:5000/needpc-frontend:0.0.1
+    image: quay.io/needpc/needpc-frontend:latest
     build: ./frontend
     hostname: frontend
     networks:
