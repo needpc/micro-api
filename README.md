@@ -55,4 +55,19 @@ Easy ? :)
 
 ### Kubernetes
 
+#### Prometheus & Grafana
+
+Installed with Helm :   
+``` shell
+helm repo add coreos https://s3-eu-west-1.amazonaws.com/coreos-charts/stable/
+helm install coreos/prometheus-operator --name prometheus-operator --namespace monitoring
+helm install coreos/kube-prometheus --name kube-prometheus --set global.rbacEnable=true --namespace monitoring
+```
+
+You can access on the [Grafana dashboards](http://localhost:3000) with the command :   
+`kubectl port-forward $(kubectl get  pods --selector=app=kube-prometheus-grafana -n  monitoring --output=jsonpath="{.items..metadata.name}") -n monitoring 3000`
+
+
+#### Services
+
 Work in progress ...
