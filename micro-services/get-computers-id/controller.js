@@ -117,7 +117,7 @@ module.exports = {
                 ],
             })
             .then(function(computers) {
-                redis.setex(md5('computer-' + req.params.id), 3600, JSON.stringify(computers));
+                redis.set(md5('computer-' + req.params.id), JSON.stringify(computers), 'EX', 3600);
                 error.http_success(req, res, {
                     code: 200,
                     data: computers
