@@ -29,6 +29,10 @@ app.get('/metrics', (req, res) => {
     res.end(prometheus.register.metrics())
 })
 
+app.get('/healthz', (req, res) => {
+    res.end()
+})
+
 const server = app.listen(env.http, () => {
     console.log(`app listening on port ${env.http}!`)
 })

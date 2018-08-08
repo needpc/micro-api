@@ -1,4 +1,3 @@
-var validator = require('validator');
 var path      = require('path');
 var error     = require(path.join(__dirname, 'errors'));
 var Models    = require(path.join(__dirname, 'sequelize/models/index'));

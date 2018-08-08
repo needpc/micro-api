@@ -1,13 +1,11 @@
 ---
-
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: needpc-api
+  name: monitoring
 
 ---
-
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: needpc-front
+  name: needpc

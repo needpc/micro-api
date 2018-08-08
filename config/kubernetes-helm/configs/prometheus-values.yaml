@@ -1,3 +1,5 @@
+# https://www.weave.works/blog/aggregating-pod-resource-cpu-memory-usage-arbitrary-labels-prometheus/
+
 rbac:
   create: true
 
@@ -5,16 +7,16 @@ rbac:
 ##
 serviceAccounts:
   alertmanager:
-    create: true
+    create: false
     name:
   kubeStateMetrics:
     create: true
     name:
   nodeExporter:
-    create: true
+    create: false
     name:
   pushgateway:
-    create: true
+    create: false
     name:
   server:
     create: true
@@ -23,7 +25,7 @@ serviceAccounts:
 alertmanager:
   ## If false, alertmanager will not be installed
   ##
-  enabled: true
+  enabled: false
 
   ## alertmanager container name
   ##
@@ -170,13 +172,13 @@ alertmanager:
   ## alertmanager resource requests and limits
   ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
   ##
-  resources: {}
-    # limits:
-    #   cpu: 10m
-    #   memory: 32Mi
-    # requests:
-    #   cpu: 10m
-    #   memory: 32Mi
+  resources:
+    limits:
+      cpu: 10m
+      memory: 32Mi
+    requests:
+      cpu: 10m
+      memory: 32Mi
 
   ## Security context to be added to alertmanager pods
   ##
@@ -307,13 +309,13 @@ kubeStateMetrics:
   ## kube-state-metrics resource requests and limits
   ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
   ##
-  resources: {}
-    # limits:
-    #   cpu: 10m
-    #   memory: 16Mi
-    # requests:
-    #   cpu: 10m
-    #   memory: 16Mi
+  resources:
+    limits:
+      cpu: 10m
+      memory: 16Mi
+    requests:
+      cpu: 10m
+      memory: 16Mi
 
   ## Security context to be added to kube-state-metrics pods
   ##
@@ -407,13 +409,13 @@ nodeExporter:
   ## node-exporter resource limits & requests
   ## Ref: https://kubernetes.io/docs/user-guide/compute-resources/
   ##
-  resources: {}
-    # limits:
-    #   cpu: 200m
-    #   memory: 50Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 30Mi
+  resources:
+    limits:
+      cpu: 200m
+      memory: 50Mi
+    requests:
+      cpu: 100m
+      memory: 30Mi
 
   ## Security context to be added to node-exporter pods
   ##
@@ -619,13 +621,13 @@ server:
   ## Prometheus server resource requests and limits
   ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
   ##
-  resources: {}
-    # limits:
-    #   cpu: 500m
-    #   memory: 512Mi
-    # requests:
-    #   cpu: 500m
-    #   memory: 512Mi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 500m
+      memory: 512Mi
 
   ## Security context to be added to server pods
   ##
@@ -657,7 +659,7 @@ server:
 pushgateway:
   ## If false, pushgateway will not be installed
   ##
-  enabled: true
+  enabled: false
 
   ## pushgateway container name
   ##
@@ -727,13 +729,13 @@ pushgateway:
   ## pushgateway resource requests and limits
   ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
   ##
-  resources: {}
-    # limits:
-    #   cpu: 10m
-    #   memory: 32Mi
-    # requests:
-    #   cpu: 10m
-    #   memory: 32Mi
+  resources:
+    limits:
+      cpu: 10m
+      memory: 32Mi
+    requests:
+      cpu: 10m
+      memory: 32Mi
 
   ## Security context to be added to push-gateway pods
   ##
@@ -843,7 +845,7 @@ serverFiles:
 
         # Default to scraping over https. If required, just disable this or change to
         # `http`.
-        scheme: https
+        scheme: http
 
         # This TLS & bearer token file config is used to connect to the actual scrape
         # endpoints for cluster components. This is separate to discovery auth
@@ -874,6 +876,11 @@ serverFiles:
             regex: (.+)
             target_label: __metrics_path__
             replacement: /api/v1/nodes/${1}/proxy/metrics
+          - target_label: __scheme__
+            replacement: http
+          # Added
+          - source_labels: [__meta_kubernetes_node_label_kubernetes_io_hostname]
+            target_label: instance
 
 
       - job_name: 'kubernetes-nodes-cadvisor'
