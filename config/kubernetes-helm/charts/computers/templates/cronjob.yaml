@@ -2,46 +2,6 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: scrap-gpu
-spec:
-  schedule: "5 4 * * *"
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          imagePullSecrets:
-            - name: regcred
-          containers:
-          - name: needpc-scrap-gpu
-            image: quay.io/perriea/needpc-scrap:0.0.1
-            command:
-            - scrap:gpu --trace
-          restartPolicy: OnFailure
-
----
-apiVersion: batch/v1beta1
-kind: CronJob
-metadata:
-  name: scrap-cpu
-spec:
-  schedule: "20 4 * * *"
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          imagePullSecrets:
-            - name: regcred
-          containers:
-          - name: needpc-scrap-cpu
-            image: quay.io/perriea/needpc-scrap:0.0.1
-            command:
-            - scrap:cpu --trace
-          restartPolicy: OnFailure
-
----
-apiVersion: batch/v1beta1
-kind: CronJob
-metadata:
   name: scrap-ldlc
 spec:
   schedule: "0 5 * * *"
@@ -97,4 +57,3 @@ spec:
             command:
             - scrap:topchat --trace
           restartPolicy: OnFailure
-
