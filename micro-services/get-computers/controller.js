@@ -108,7 +108,53 @@ module.exports = {
         }
 
         // Push all relation, search no avalailble
-        includes.push(
+        includes.push({
+                model: Models["computers_os"],
+                as: "os",
+                attributes: {
+                    exclude: [
+                        'id'
+                    ]
+                },
+                required: false
+            }, {
+                model: Models["computers_cpus"],
+                as: "cpu",
+                attributes: {
+                    exclude: [
+                        'id'
+                    ]
+                },
+                required: false
+            }, {
+                model: Models["computers_gpus"],
+                as: "gpu",
+                attributes: {
+                    exclude: [
+                        'id'
+                    ]
+                },
+                required: false
+            }, {
+                model: Models["computers_chipsets"],
+                as: "chipset",
+                attributes: {
+                    exclude: [
+                        'id'
+                    ]
+                },
+                required: false
+            }, {
+                model: Models["computers_activities"],
+                as: "activity",
+                attributes: {
+                    exclude: [
+                        'id',
+                        'description'
+                    ]
+                },
+                required: false
+            }, 
             {
                 model: Models['computers_prices'], 
                 as: 'prices',

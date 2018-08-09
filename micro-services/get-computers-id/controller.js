@@ -1,9 +1,6 @@
-var validator = require('validator');
 var path      = require('path');
-const md5     = require('md5');
 var error     = require(path.join(__dirname, 'errors'));
 var Models    = require(path.join(__dirname, 'sequelize/models/index'));
-const redis   = require(path.join(__dirname, 'redis'));
 
 module.exports = {
     Get: function(req, res) {
@@ -117,7 +114,6 @@ module.exports = {
                 ],
             })
             .then(function(computers) {
-                redis.set(md5('computer-' + req.params.id), JSON.stringify(computers), 'EX', 3600);
                 error.http_success(req, res, {
                     code: 200,
                     data: computers
@@ -130,19 +126,4 @@ module.exports = {
                 });
             })
     },
-
-    GetCache: function(req, res, next) {
-        redis.get(md5('computer-' + req.params.id), function(err, data) {
-            if (err) throw err;
-
-            if (data != null) {
-                error.http_success(req, res, {
-                    code: 200,
-                    data: JSON.parse(data)
-                });
-            } else {
-                next();
-            }
-        });
-    }
 }
