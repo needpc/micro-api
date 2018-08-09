@@ -29,7 +29,6 @@ micro Brand (unit) | 20003 |
 micro Ask (unit) | 20004 |
 micro Activity (unit) | 20005 |
 micro Computers (unit) | 20006 |
-micro Computers-ID (unit) | 20007 |
 
 
 ### Database

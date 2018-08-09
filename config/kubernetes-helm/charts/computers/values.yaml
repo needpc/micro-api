@@ -18,6 +18,12 @@ computers:
   environment: production
   registry: regcred
 
+redis:
+  hostname: redis
+  repository: redis
+  tag: 4.0-alpine
+  pullPolicy: IfNotPresent
+
 # Service
 service:
   type: ClusterIP
@@ -31,6 +37,14 @@ computers_resources:
   requests:
    cpu: 100m
    memory: 64Mi
+
+redis_resources:
+  limits:
+   cpu: 100m
+   memory: 128Mi
+  requests:
+   cpu: 100m
+   memory: 128Mi
 
 nodeSelector: {}
 

@@ -29,8 +29,6 @@ spec:
           imagePullSecrets:
           - name: {{ .Values.computers.registry }}
           env:
-          - name: APP_REDIS_HOST
-            value: redis
           - name: DATABASE
             valueFrom:
               secretKeyRef:
@@ -59,12 +57,29 @@ spec:
             httpGet:
               path: /healthz
               port: {{ .Values.service.containerPort }}
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+            periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /healthz
               port: {{ .Values.service.containerPort }}
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+            periodSeconds: 10
           resources:
 {{ toYaml .Values.computers_resources | indent 12 }}
+
+        - name: {{ .Values.redis.hostname }}
+          hostname: {{ .Values.redis.hostname }}
+          image: "{{ .Values.redis.repository }}:{{ .Values.redis.tag }}"
+          imagePullPolicy: {{ .Values.redis.pullPolicy }}
+          ports:
+            - name: {{ .Values.redis.hostname }}
+              containerPort: 6379
+              protocol: TCP
+          resources:
+{{ toYaml .Values.redis_resources | indent 12 }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}

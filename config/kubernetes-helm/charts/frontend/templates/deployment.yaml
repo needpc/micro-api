@@ -21,6 +21,7 @@ spec:
         app: {{ template "frontend.name" . }}
         release: {{ .Release.Name }}
     spec:
+      replicas: 1
       containers:
         - name: {{ .Chart.Name }}
           hostname: {{ .Values.frontend.hostname }}
@@ -36,10 +37,16 @@ spec:
             httpGet:
               path: /
               port: {{ .Values.service.containerPort }}
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+            periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /
               port: {{ .Values.service.containerPort }}
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+            periodSeconds: 10
           resources:
 {{ toYaml .Values.frontend_resources | indent 12 }}
 
@@ -55,21 +62,3 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
----
-
-apiVersion: autoscaling/v2beta1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: {{ template "frontend.fullname" . }}
-spec:
-  scaleTargetRef:
-    apiVersion: extensions/v1beta1
-    kind: Deployment
-    name: {{ template "frontend.fullname" . }}
-  minReplicas: {{ .Values.minReplicaCount }}
-  maxReplicas: {{ .Values.maxReplicaCount }}
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      targetAverageUtilization: 80

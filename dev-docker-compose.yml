@@ -27,21 +27,6 @@ services:
     ports:
       - "6379:6379"
 
-  api-computers-id:
-    image: quay.io/needpc/needpc-api-computers-id:latest
-    build: ./micro-services/get-computers-id
-    hostname: api-computers-id
-    depends_on:
-      - db
-      - redis
-    environment:
-      NODE_ENV: development
-      APP_REDIS_HOST: redis
-    networks:
-      - app-private
-    ports:
-      - "20007:3000"
-
   api-computers:
     image: quay.io/needpc/needpc-api-computers:latest
     build: ./micro-services/get-computers
@@ -157,7 +142,6 @@ services:
     hostname: gateway
     depends_on:
       - api-computers
-      - api-computers-id
       - api-activity
       - api-ask
       - api-brand
