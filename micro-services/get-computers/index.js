@@ -35,6 +35,7 @@ app.use(morgan(':remote-addr :remote-user [:date[web]] ":method :url HTTP/:http-
 
 /////////// Routes ////////
 app.route('/v1/search/computers').get(cache.route(), controller.Get);
+app.route('/v1/search/computers/:id').get(cache.route(), controller.GetId);
 
 app.get('/metrics', (req, res) => {
     res.set('Content-Type', prometheus.register.contentType)
