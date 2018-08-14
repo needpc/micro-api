@@ -1,3 +1,6 @@
 [submodule "frontend"]
 	path = frontend
 	url = git@github.com:needpc/front.git
+[submodule "config/kubernetes-helm"]
+	path = config/kubernetes-helm
+	url = git@github.com:needpc/kubernetes-helm.git
