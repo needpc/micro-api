@@ -1,6 +1,6 @@
 {
   "name": "needpc-activity",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "Microservice Activity API",
   "repository": "https://github.com/needpc/micro-api.git",
   "main": "index.js",

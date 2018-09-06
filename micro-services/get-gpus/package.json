@@ -1,6 +1,6 @@
 {
   "name": "needpc-gpus",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "Microservice GPU API",
   "author": "perriea <perrie_a@etna-alternance.net>",
   "license": "MIT",

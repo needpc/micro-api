@@ -1,5 +1,4 @@
 const path      = require('path');
-const error     = require(path.join(__dirname, 'errors'));
 const Models    = require(path.join(__dirname, 'sequelize/models/index'));
 
 module.exports = {
@@ -21,14 +20,13 @@ module.exports = {
             where: {
                 $and: conditions,
             },
-        }).then(function(object) {            
-            error.http_success(req, res, { 
-                code: 200, 
-                data: object 
-            });
+        }).then(function(activities) {            
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json({ error: false, data: activities })
         }).error(function(err) {
-            console.log('Error occured' + err);
-            error.http_error(req, res, { code: 500 });
+            console.error(err);
+            res.setHeader('Content-Type', 'application/json');
+            res.status(500).json({ error: true, message: "Internal error" })
         });
     },
 };

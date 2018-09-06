@@ -1,7 +1,6 @@
-var validator = require('validator');
-var path      = require('path');
-var error     = require(path.join(__dirname, 'errors'));
-var Models    = require(path.join(__dirname, 'sequelize/models/index'));
+const validator = require('validator');
+const path      = require('path');
+const Models    = require(path.join(__dirname, 'sequelize/models/index'));
 
 module.exports = {
 
@@ -188,13 +187,12 @@ module.exports = {
                 'created_at'
             ],
         }).then(function(computers) {
-            if (!computers)
-                error.http_error(req, res, { code: 404 });
-            else
-                error.http_success(req, res, { code: 200, data: computers });
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json({ error: false, data: computers })
         }).error(function(err) {
-            console.log('Error occured' + err);
-            error.http_error(req, res, { code: 500 });
+            console.error(err);
+            res.setHeader('Content-Type', 'application/json');
+            res.status(500).json({ error: true, message: "Internal error" })
         });
     },
 
@@ -202,6 +200,11 @@ module.exports = {
         includes = []
         conditions = {};
         conditions['id'] = req.params.id
+
+        if (typeof conditions['id'] != "number") {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(400).json({ error: true, message: "Bad request" })
+        }
 
         // Push all relation, search no avalailble
         includes.push({
@@ -277,48 +280,43 @@ module.exports = {
 
         // request
         Models["computers"].findAll({
-                include: includes,
-                where: {
-                    $and: conditions,
-                    active: true
-                },
-                attributes: [
-                    'id',
-                    'model',
-                    'picture',
-                    'connector_available',
-                    'weight',
-                    'length',
-                    'width',
-                    'height',
-                    'memory_size',
-                    'memory_type',
-                    'memory_max_size',
-                    'keyboard_type',
-                    'keyboard_numpad',
-                    'keyboard_light',
-                    'screen_type',
-                    'screen_resolution',
-                    'screen_refresh_rate',
-                    'screen_size',
-                    'screen_format',
-                    'network',
-                    'webcam',
-                    'updated_at',
-                    'created_at'
-                ],
-            })
-            .then(function(computers) {
-                error.http_success(req, res, {
-                    code: 200,
-                    data: computers
-                });
-            })
-            .error(function(err) {
-                console.log('Error occured' + err);
-                error.http_error(req, res, {
-                    code: 500
-                });
-            })
+            include: includes,
+            where: {
+                $and: conditions,
+                active: true
+            },
+            attributes: [
+                'id',
+                'model',
+                'picture',
+                'connector_available',
+                'weight',
+                'length',
+                'width',
+                'height',
+                'memory_size',
+                'memory_type',
+                'memory_max_size',
+                'keyboard_type',
+                'keyboard_numpad',
+                'keyboard_light',
+                'screen_type',
+                'screen_resolution',
+                'screen_refresh_rate',
+                'screen_size',
+                'screen_format',
+                'network',
+                'webcam',
+                'updated_at',
+                'created_at'
+            ],
+        }).then(function(computers) {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json({ error: false, data: computers })
+        }).catch(function(err) {
+            console.error(err);
+            res.setHeader('Content-Type', 'application/json');
+            res.status(500).json({ error: true, message: "Internal error" })
+        });
     },
 }
