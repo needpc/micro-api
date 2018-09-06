@@ -1,10 +1,19 @@
 # micro-api
 
+Fetch all submodules : `git submodule update --init`
+
+
 ## Require
 
 * Docker,
-* RamlHTML,
-* Java (UML Database).
+* NodeJS,
+* Angular,
+* Golang.
+
+## Optional
+
+* Java (UML Database),
+* RamlHTML.
 
 
 ## Apps (Dev)
@@ -12,23 +21,23 @@
 ### Docker
 
 All micro-services are build with Docker.
-You can build and run with this command : `docker-compose -f dev-docker-compose.yml up --build`
+You can build and run with this command : `make`
 
 This action open different ports :   
 
-| App | Port |
-| ----|:----:|
-Nginx (Gateway) | 80 |
-Redis | 6379 |
-PostgreSQL | 5432 |
-Frontend (unit) | 19000 |
-micro 404 (unit) | 20000 |
-micro GPU (unit) | 20001 |
-micro CPU (unit) | 20002 |
-micro Brand (unit) | 20003 |
-micro Ask (unit) | 20004 |
-micro Activity (unit) | 20005 |
-micro Computers (unit) | 20006 |
+| App | Port | Status
+| ----| ----|:----:|
+Nginx (Endpoint) | 80 | local |
+Redis (Caching) | 6379 | local |
+PostgreSQL (Database) | 5432 | local |
+Frontend (unit) | 19000 | [![Docker Repository on Quay](https://quay.io/repository/needpc/needpc-frontend/status "Docker Repository on Quay")](https://quay.io/repository/needpc/needpc-frontend) |
+micro 404 (unit) | 20000 | [![Docker Repository on Quay](https://quay.io/repository/needpc/needpc-api-notfound/status "Docker Repository on Quay")](https://quay.io/repository/needpc/needpc-api-notfound) |
+micro GPUs (unit) | 20001 | [![Docker Repository on Quay](https://quay.io/repository/needpc/needpc-api-gpus/status "Docker Repository on Quay")](https://quay.io/repository/needpc/needpc-api-gpus) |
+micro CPUs (unit) | 20002 | [![Docker Repository on Quay](https://quay.io/repository/needpc/needpc-api-cpus/status "Docker Repository on Quay")](https://quay.io/repository/needpc/needpc-api-cpus) |
+micro Brands (unit) | 20003 | [![Docker Repository on Quay](https://quay.io/repository/needpc/needpc-api-brands/status "Docker Repository on Quay")](https://quay.io/repository/needpc/needpc-api-brands) |
+micro Ask (unit) | 20004 | [![Docker Repository on Quay](https://quay.io/repository/needpc/needpc-api-ask/status "Docker Repository on Quay")](https://quay.io/repository/needpc/needpc-api-ask) |
+micro Activities (unit) | 20005 | [![Docker Repository on Quay](https://quay.io/repository/needpc/needpc-api-activities/status "Docker Repository on Quay")](https://quay.io/repository/needpc/needpc-api-activities) |
+micro Computers (unit) | 20006 | [![Docker Repository on Quay](https://quay.io/repository/needpc/needpc-api-computers/status "Docker Repository on Quay")](https://quay.io/repository/needpc/needpc-api-computers) |
 
 
 ### Database
@@ -48,25 +57,3 @@ Default values :
 * Password : `nodejs`.
 
 Easy ? :)
-
-
-## Apps (Prod)
-
-### Kubernetes
-
-#### Prometheus & Grafana
-
-Installed with Helm :   
-``` shell
-helm repo add coreos https://s3-eu-west-1.amazonaws.com/coreos-charts/stable/
-helm install coreos/prometheus-operator --name prometheus-operator --namespace monitoring
-helm install coreos/kube-prometheus --name kube-prometheus --set global.rbacEnable=true --namespace monitoring
-```
-
-You can access on the [Grafana dashboards](http://localhost:3000) with the command :   
-`kubectl port-forward $(kubectl get  pods --selector=app=kube-prometheus-grafana -n  monitoring --output=jsonpath="{.items..metadata.name}") -n monitoring 3000`
-
-
-#### Services
-
-Work in progress ...
