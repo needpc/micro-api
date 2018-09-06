@@ -13,6 +13,7 @@ var config    = {
   host: process.env.DATABASE_HOST || "db",
   dialect: process.env.DATABASE_DIALECT || "postgres",
   ssl: process.env.DATABASE_SSL || false,
+  logging: process.env.ORM_LOGGING || false,
 }
 
 var sequelize = new Sequelize(config.database, config.username, config.password, config);

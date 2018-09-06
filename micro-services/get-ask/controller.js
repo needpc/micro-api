@@ -1,5 +1,4 @@
 var path      = require('path');
-var error     = require(path.join(__dirname, 'errors'));
 var Models    = require(path.join(__dirname, 'sequelize/models/index'));
 
 module.exports = {
@@ -62,8 +61,11 @@ module.exports = {
                     'active'
                 ] 
             }
-        }).then(function (question) {
-            error.http_success(req, res, { code: 200, data: question });
+        })
+        .then(question => res.status(200).json({ error: false, data: question }))
+        .catch(function(err) {
+            console.error(err)
+            res.status(500).json({ error: true, message: "Internal error" })
         });
     }
 };
