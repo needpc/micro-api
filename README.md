@@ -1,4 +1,4 @@
-# micro-api
+# micro-api [![CodeFactor](https://www.codefactor.io/repository/github/needpc/micro-api/badge)](https://www.codefactor.io/repository/github/needpc/micro-api)
 
 Fetch all submodules : `git submodule update --init`
 
