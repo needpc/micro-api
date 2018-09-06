@@ -1,6 +1,6 @@
 {
   "name": "needpc-brand",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "Microservice Brand API",
   "repository": "https://github.com/needpc/micro-api.git",
   "main": "index.js",
