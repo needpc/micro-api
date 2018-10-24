@@ -6,6 +6,7 @@ module.exports = {
 
     // Get all computers
     Get: function(req, res) {
+        args = ["os_id", "screen_size", "brand_id", "activity_id", "cpu_id", "gpu_id"]
         includes = []
         conditions = {};
 
@@ -13,69 +14,24 @@ module.exports = {
         if (req.query.model != null && validator.isLength(req.query.model, { min: 0, max: 40 }))
             conditions["model"] = { $like: '%' + req.query.model + '%' };
 
-        // OS
-        if (req.query.os != null && req.query.os != "") {
-            conditions["os_id"] = []
-            for (var i = 0; i < req.query.os.length; i++) {
-                conditions["os_id"].push(req.query.os[i]);
-            }
-        }
-
-        // Screen
-        if (req.query.screen != null && req.query.screen != "") {
-            conditions["screen_size"] = []
-            for (var i = 0; i < req.query.screen.length; i++) {
-                if (req.query.screen[i] >= 11 && req.query.screen[i] <= 17.3) {
-                    conditions["screen_size"].push(req.query.screen[i]);
+        // Filtring IDs
+        args.forEach(function(element) {
+            if (req.query[element] != null && req.query[element] != "" && !Array.isArray(req.query[element])) {
+                if (validator.isInt(req.query[element], { allow_leading_zeroes: false }))
+                    conditions[element] = req.query[element]
+            } else if (Array.isArray(req.query[element])) {
+                conditions[element] = []
+                for (var i = 0; i < req.query[element].length; i++) {
+                    if (validator.isInt(req.query[element][i], { allow_leading_zeroes: false }))
+                        conditions[element].push(req.query[element][i]);
                 }
             }
-        }
+        });
 
         // Webcam
         if (req.query.webcam != null && req.query.webcam != "") {
             if (req.query.webcam == "true" || req.query.webcam == "false") {
                 conditions["webcam"] = req.query.webcam;
-            }
-        }
-
-        // Brands
-        if (req.query.brand != null && req.query.brand != "") {
-            conditions["brand_id"] = []
-            for (var i = 0; i < req.query.brand.length; i++) {
-                conditions["brand_id"].push(req.query.brand[i]);
-            }
-        }
-
-        // activity
-        if (req.query.activity != null && req.query.activity != "") {
-            conditions["activity_id"] = []
-            for (var i = 0; i < req.query.activity.length; i++) {
-                conditions["activity_id"].push(req.query.activity[i]);
-            }
-        }
-
-        // CPU
-        if (req.query.cpu != null && req.query.cpu != "") {
-            conditions["cpu_id"] = []
-            for (var i = 0; i < req.query.cpu.length; i++) {
-                conditions["cpu_id"].push(req.query.cpu[i]);
-            }
-        }
-
-        // CPU Scoring
-        if ((req.query.cpu_score_min != null && req.query.cpu_score_min != "") &&
-            (req.query.cpu_score_max != null && req.query.cpu_score_max != "")) {
-            conditions["$cpu.score$"] = {
-                $gte: (parseInt(req.query.cpu_score_min, 10)),
-                $lte: (parseInt(req.query.cpu_score_max, 10)),
-            };
-        }
-
-        // GPU
-        if (req.query.gpu != null && req.query.gpu != "") {
-            conditions["gpu_id"] = []
-            for (var i = 0; i < req.query.gpu.length; i++) {
-                conditions["gpu_id"].push(req.query.gpu[i]);
             }
         }
 
