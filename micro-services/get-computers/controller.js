@@ -157,10 +157,11 @@ module.exports = {
         conditions = {};
         conditions['id'] = req.params.id
 
-        if (typeof conditions['id'] != "number") {
+        if (!validator.isInt(req.params.id, { min: 1, allow_leading_zeroes: true })) {
             res.setHeader('Content-Type', 'application/json');
             res.status(400).json({ error: true, message: "Bad request" })
         }
+
 
         // Push all relation, search no avalailble
         includes.push({
