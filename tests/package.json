@@ -1,0 +1,16 @@
+{
+  "name": "tests",
+  "version": "0.0.1",
+  "description": "Microservices",
+  "author": "perriea <perrie_a@etna-alternance.net>",
+  "license": "MIT",
+  "repository": "https://github.com/needpc/micro-api.git",
+  "main": "index.js",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "request": "^2.88.0"
+  },
+  "scripts": {
+    "test": "mocha test.js"
+  }
+}
